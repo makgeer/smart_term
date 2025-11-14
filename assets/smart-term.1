@@ -1,0 +1,69 @@
+.TH SMART-TERM 1 "December 2023" "smart-term 1.0.0"
+.SH NAME
+smart-term \- умный терминал с псевдографикой и Git интеграцией
+.SH SYNOPSIS
+.B smart-term
+[\fI\,OPTION\/\fR]...
+.SH DESCRIPTION
+Smart Term - это современный терминал с псевдографическим интерфейсом
+в стиле Far Manager и Midnight Commander. Включает встроенный редактор,
+Git интеграцию, поддержку нескольких языков программирования и полную
+справку по Bash командам.
+.SH OPTIONS
+.TP
+.B \-\-help, \-h
+Показать справку и выйти
+.TP
+.B \-\-version, \-v
+Показать версию и выйти
+.TP
+.B \-\-ui, \-u
+Запуск в псевдографическом режиме
+.SH COMMANDS
+.TP
+.B !rust <code>
+Выполнить Rust код
+.TP
+.B !python <code>
+Выполнить Python код
+.TP
+.B !edit <file>
+Редактировать файл
+.TP
+.B gs, ga, gc, gp
+Git команды (status, add, commit, push)
+.TP
+.B help
+Справка по терминалу
+.TP
+.B bash-help
+Полная справка по Bash
+.SH HOTKEYS
+.TP
+.B Ctrl+U
+Переключение в псевдографический режим
+.TP
+.B Ctrl+Q
+Выход из псевдографического режима
+.TP
+.B Tab
+Переключение между панелями (UI режим)
+.SH FILES
+.TP
+.I ~/.config/smart-term/config.toml
+Файл конфигурации
+.SH EXAMPLES
+.nf
+.B smart-term
+Запуск в текстовом режиме
+.B smart-term --ui
+Запуск в псевдографическом режиме
+.B !rust "fn main() { println!(\e"Hello!\e"); }"
+Выполнить Rust код
+.fi
+.SH AUTHOR
+Написан Smart Term Developer <dev@smart-term.org>
+.SH SEE ALSO
+.BR mc (1),
+.BR far2l (1),
+.BR git (1)

@@ -1,0 +1,10 @@
+smart-term (1.0.0) unstable; urgency=medium
+
+  * Первый релиз Smart Term
+  * Псевдографический интерфейс в стиле Far/MC
+  * Встроенный Micro-like редактор
+  * Git интеграция с визуальным статусом
+  * Мультиязычная поддержка (Rust, Python, Java)
+  * Полная справка по Bash командам
+
+ -- Smart Term Developer <dev@smart-term.org>  Fri, 01 Dec 2023 12:00:00 +0300

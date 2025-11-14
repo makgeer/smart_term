@@ -1,0 +1,27 @@
+Source: smart-term
+Section: utils
+Priority: optional
+Maintainer: Smart Term Developer <dev@smart-term.org>
+Build-Depends: debhelper-compat (= 13), cargo, rustc, libc6-dev
+Standards-Version: 4.6.0
+Homepage: https://github.com/smart-term/smart-term
+Vcs-Browser: https://github.com/smart-term/smart-term
+Vcs-Git: https://github.com/smart-term/smart-term.git
+
+Package: smart-term
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, git
+Description: Умный терминал с псевдографикой и Git интеграцией
+ Smart Term - это современный терминал с псевдографическим интерфейсом
+ в стиле Far Manager и Midnight Commander. Включает встроенный редактор,
+ Git интеграцию, поддержку нескольких языков программирования и полную
+ справку по Bash командам.
+ .
+ Особенности:
+  * Псевдографический интерфейс с двумя панелями
+  * Встроенный Micro-like редактор с подсветкой синтаксиса
+  * Git интеграция с визуальным статусом
+  * Мультиязычная поддержка (Rust, Python, Java)
+  * Полная справка по Bash командам
+  * Управление правами доступа
+  * Кросс-платформенность
