@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  release:
+    types: [created]
+
+jobs:
+  build:
+    name: Build and Release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            artifact_name: smart-term-linux
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            artifact_name: smart-term-windows
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            artifact_name: smart-term-macos
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        target: ${{ matrix.target }}
+        override: true
+
+    - name: Build Release
+      uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --release --target ${{ matrix.target }}
+
+    - name: Strip Binary (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: strip target/${{ matrix.target }}/release/smart-term
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: target/${{ matrix.target }}/release/smart-term*
+
+    - name: Create Release
+      if: matrix.os == 'ubuntu-latest'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          target/${{ matrix.target }}/release/smart-term
+          target/${{ matrix.target }}/release/smart-term.exe

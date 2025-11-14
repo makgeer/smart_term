@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Smart Term
+GenericName=Smart Terminal
+Comment=Умный терминал с псевдографикой и Git интеграцией
+Exec=smart-term --ui
+Icon=smart-term
+Terminal=false
+Categories=System;TerminalEmulator;FileTools;
+Keywords=terminal;file;manager;editor;git;
+StartupNotify=true

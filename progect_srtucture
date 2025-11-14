@@ -1,0 +1,56 @@
+smart-term/
+├── Cargo.toml
+├── Cargo.lock
+├── README.md
+├── INSTALL.md
+├── LICENSE
+├── .github/
+│   └── workflows/
+│       └── release.yml
+├── assets/
+│   ├── smart-term.1          # man страница
+│   ├── icon.png              # иконка для .deb
+│   └── smart-term.desktop    # desktop файл
+├── completions/
+│   ├── smart-term.bash       # bash completion
+│   ├── smart-term.zsh        # zsh completion
+│   └── smart-term.fish       # fish completion
+├── debian/
+│   ├── control               # для сборки .deb
+│   ├── rules
+│   └── changelog
+├── src/
+│   ├── main.rs
+│   ├── terminal/
+│   │   ├── mod.rs
+│   │   ├── core.rs
+│   │   ├── executor.rs
+│   │   ├── parser.rs
+│   │   └── history.rs
+│   ├── ui/
+│   │   ├── mod.rs
+│   │   ├── ncurses_like.rs
+│   │   ├── panels.rs
+│   │   ├── widgets.rs
+│   │   ├── keybindings.rs
+│   │   └── git_widget.rs
+│   ├── editor/
+│   │   ├── mod.rs
+│   │   ├── micro_like.rs
+│   │   ├── text_buffer.rs
+│   │   └── syntax.rs
+│   ├── git/
+│   │   ├── mod.rs
+│   │   └── manager.rs
+│   ├── help/
+│   │   ├── mod.rs
+│   │   └── bash_help.rs
+│   └── utils/
+│       ├── mod.rs
+│       ├── privileges.rs
+│       └── helpers.rs
+└── scripts/
+    ├── install.sh            # универсальный установщик
+    ├── build-deb.sh          # сборка .deb пакета
+    ├── build-rpm.sh          # сборка .rpm пакета
+    └── create-release.sh     # создание релиза
