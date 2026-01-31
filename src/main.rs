@@ -444,6 +444,9 @@ fn execute_command(terminal: &mut TerminalState, current_dir: &PathBuf) {
         }
     }
     
+    // ✅ ДОБАВЛЯЕМ КОМАНДУ В ВЫВОД (как в настоящих терминалах)
+    terminal.output_lines.push_back(format!("{} {}", terminal.prompt.trim_end(), command));
+    
     // Обработка встроенных команд
     if command == "help" {
         terminal.output_lines.push_back("Smart Term - Встроенные команды:".to_string());
@@ -454,7 +457,6 @@ fn execute_command(terminal: &mut TerminalState, current_dir: &PathBuf) {
         terminal.output_lines.push_back("  cd       - Сменить директорию".to_string());
         terminal.output_lines.push_back("  exit     - Выход из терминала".to_string());
         terminal.output_lines.push_back("  gui      - Переключить в GUI режим".to_string());
-        terminal.output_lines.push_back("".to_string());
     } else if command == "clear" {
         terminal.output_lines.clear();
     } else if command == "pwd" {
@@ -471,13 +473,22 @@ fn execute_command(terminal: &mut TerminalState, current_dir: &PathBuf) {
                 }
             }
         }
-    } else if command.starts_with("cd ") {
-        let path = &command[3..].trim();
-        if *path == ".." {
+    } else if command.starts_with("cd ") || command == "cd" {
+        let path = if command == "cd" {
+            ""
+        } else {
+            &command[3..].trim()
+        };
+        
+        if path.is_empty() {
+            // Просто cd - показать текущую директорию
+            let current_path = std::env::current_dir().unwrap_or_default();
+            terminal.output_lines.push_back(current_path.display().to_string());
+        } else if path == ".." {
             if let Some(parent) = current_dir.parent() {
                 std::env::set_current_dir(parent).ok();
             }
-        } else if *path == "~" {
+        } else if path == "~" {
             if let Some(home) = dirs::home_dir() {
                 std::env::set_current_dir(home).ok();
             }
