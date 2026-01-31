@@ -2,4 +2,4 @@
 .github/
 target/
 *Cargo.lock
-*Cargo.toml
+# Cargo.toml должен быть в репозитории

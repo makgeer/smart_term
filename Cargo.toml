@@ -1,0 +1,16 @@
+[package]
+name = "smart-term"
+version = "0.1.0"
+edition = "2021"
+authors = ["You"]
+description = "Кроссплатформенный терминал с псевдографикой"
+license = "MIT"
+
+[dependencies]
+crossterm = "0.26"
+dirs = "5.0"
+
+[profile.release]
+opt-level = 3
+debug = false
+strip = true
